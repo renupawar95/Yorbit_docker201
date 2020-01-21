@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+
+  frontend:
+    build: .
+    ports:
+      - "8083:8080"
+    networks:
+      - tourism-mysql
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    networks:
+      - tourism-mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=tourismdb
+networks:
+  tourism-mysql:
